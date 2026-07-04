@@ -10,3 +10,6 @@ backend/.env
 
 # OS
 .DS_Store
+
+# TypeScript ビルドキャッシュ
+frontend/tsconfig.tsbuildinfo

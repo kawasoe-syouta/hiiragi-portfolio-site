@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Zen_Maru_Gothic, Cormorant_Garamond } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BloomingFlowers from "@/components/BloomingFlowers";
 import "./globals.css";
 
 const zenMaru = Zen_Maru_Gothic({
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ja" className={`${zenMaru.variable} ${cormorant.variable}`}>
       <body>
+        <BloomingFlowers />
         <Header />
         <main>{children}</main>
         <Footer />
