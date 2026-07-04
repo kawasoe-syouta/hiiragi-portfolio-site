@@ -16,35 +16,35 @@ export default function About() {
           <div className="profile-flex">
             <div className="profile-img">
               {/* ★プロフィール画像を差し替え */}
-              <img src={`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/images/icon.svg`} alt="ひいらぎ" />
+              <img src={`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/images/icon.jpg`} alt="ひいらぎ" />
             </div>
             <div className="profile-text">
               <h3>ひいらぎ / Webデザイナー・コーダー</h3>
               <p>
                 はじめまして、ひいらぎと申します。<br />
-                Web制作会社で3年間、デザインとコーディングの実務を経験したのち、フリーランスとして独立しました。
-                自然やお花が好きで、やわらかく心地よいデザインを得意としています。<br /><br />
-                「デザインもコーディングもまとめてお願いしたい」というご要望にワンストップでお応えできるのが強みです。
+                元お墓の管理事務にて務めておりました。その後Web制作会社で3年間、デザインとコーディングの実務を経験したのち、フリーランスとして独立しました。
+                人の心に寄り添うヒヤリングを得意としています。<br /><br />
+                「HP作りたいけど頼むのが不安」という思いに寄り添いお客様目線でヒヤリングを進めて参ります。
+                また、デザインからコーディングまで一貫してお応えできるのが強みです。
               </p>
 
               <h3>経歴</h3>
               <ul className="timeline">
-                <li><span className="year">2020</span>デザイン専門学校 卒業</li>
-                <li><span className="year">2020</span>Web制作会社に入社。コーポレートサイト・ECサイトの制作を担当</li>
-                <li><span className="year">2023</span>フリーランスとして独立。屋号「ひいらぎ」で活動開始</li>
-                <li><span className="year">2024</span>累計制作実績50件を達成。LP・バナー制作の継続案件多数</li>
-                <li><span className="year">2026</span>現在も個人・中小企業さまを中心にお手伝いしています</li>
+                <li><span className="year">2020</span>お墓の管理事務に入社。SNS運用など担当</li>
+                <li><span className="year">2023</span>Web制作会社に入社。フロントエンド開発とWebデザイン制作、UI・UX設計を担当</li>
+                <li><span className="year">2026</span>日本デザインスクール 卒業</li>
+                <li><span className="year">2026</span>フリーランスとして独立。屋号「ひいらぎ」で活動開始</li>
               </ul>
 
               <h3>実績</h3>
               <p>
-                Webサイト制作 20件以上 / LP制作 15件以上 / バナー制作 100本以上<br />
-                コーディング代行(デザインカンプからの実装) 多数
+                Webサイト制作 20件以上 / バナー制作 30本以上<br />
+                コーディング代行(デザインカンプからの実装) 10件以上
               </p>
 
               <h3>スキル</h3>
               <div className="skill-tags">
-                {["HTML / CSS", "JavaScript", "Next.js", "Laravel", "WordPress", "Figma", "Photoshop", "Illustrator"].map((s) => (
+                {["HTML / CSS", "JavaScript", "react", "WordPress", "Figma", "Photoshop", "Illustrator"].map((s) => (
                   <span key={s}>{s}</span>
                 ))}
               </div>

@@ -33,15 +33,15 @@ export default async function Home() {
         <HeroDeco pos="tl" />
         <HeroDeco pos="br" />
         <div className="hero-icon">
-          {/* ★アイコン画像: backend/public/images/icon.svg を差し替え */}
-          <img src={`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/images/icon.svg`} alt="ひいらぎのアイコン" />
+          {/* ★アイコン画像: backend/public/images/icon.jpg を差し替え */}
+          <img src={`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/images/icon.jpg`} alt="ひいらぎのアイコン" />
         </div>
         <p className="hero-en">Web Designer / Coder</p>
         <h1>ひいらぎ</h1>
-        <p className="role">やさしく、自然のぬくもりを感じるデザインを。</p>
+        <p className="role">やさしく、お客様の心に寄り添うデザインを。</p>
         <p className="lead">
           はじめまして、ひいらぎです。<br />
-          女性らしいやわらかさと使いやすさを大切に、<br />
+          女性らしいかわいらしさと使いやすさを大切に、<br />
           Webサイト・LP・バナーのデザインとコーディングを承っています。
         </p>
         <div className="hero-btns">
@@ -59,8 +59,8 @@ export default async function Home() {
             <Flower />
           </div>
           <p style={{ textAlign: "center", maxWidth: 600, margin: "0 auto" }}>
-            Web制作会社での勤務を経て、フリーランスのWebデザイナー・コーダーとして活動しています。<br />
-            「見た人の心がふっと軽くなる」ような、あたたかいデザインが得意です。
+            デザインスクール卒業後、フリーランスのWebデザイナー・コーダーとして活動しています。<br />
+            「見た人の心を動かす」ような、ワクワクするデザインが得意です。
           </p>
           <p style={{ textAlign: "center", marginTop: 28 }}>
             <Link href="/about" className="btn btn-outline">経歴・実績をくわしく見る</Link>
