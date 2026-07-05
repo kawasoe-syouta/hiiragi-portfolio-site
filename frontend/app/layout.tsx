@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Zen_Maru_Gothic, Cormorant_Garamond } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
   description: "Webデザイナー/コーダー ひいらぎのポートフォリオサイト。やさしく、自然のぬくもりを感じるデザインをお届けします。",
 };
 
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" className={`${zenMaru.variable} ${cormorant.variable}`}>
@@ -30,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
       </body>
+      {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
 }
