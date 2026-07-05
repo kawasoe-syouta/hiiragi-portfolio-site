@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import type { Work } from "@/lib/api";
 
 export default function WorksGrid({
@@ -45,7 +46,9 @@ export default function WorksGrid({
         )}
       </div>
 
-      {modal && (
+      {/* .section .container(z-index:2)の重なりコンテキストに閉じ込められると
+          ヘッダー(z-index:100)より下になるため、body 直下に描画する */}
+      {modal && createPortal(
         <div className="modal-overlay open" onClick={(e) => e.target === e.currentTarget && setModal(null)}>
           <div className="modal">
             <button className="modal-close" onClick={() => setModal(null)}>✕</button>
@@ -56,7 +59,8 @@ export default function WorksGrid({
               <p>{modal.description}</p>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
