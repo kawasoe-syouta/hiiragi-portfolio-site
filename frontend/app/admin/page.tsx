@@ -99,6 +99,25 @@ export default function Admin() {
     loadWorks();
   }
 
+  async function toggleFeatured(id: number) {
+    const current = works.filter((w) => w.is_featured).map((w) => w.id);
+    const isOn = current.includes(id);
+    if (!isOn && current.length >= 3) {
+      alert("トップページに表示できる作品は3件までです。ほかの作品を外してから指定してください。");
+      return;
+    }
+    const next = isOn ? current.filter((x) => x !== id) : [...current, id];
+    // 表示中は即座に反映(楽観的更新)
+    setWorks(works.map((w) => ({ ...w, is_featured: next.includes(w.id) })));
+    const res = await fetch(`${API_URL}/api/admin/works-featured`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ ids: next }),
+    });
+    if (res.status === 401) { logout(); return; }
+    loadWorks();
+  }
+
   async function move(id: number, dir: number) {
     const i = works.findIndex((w) => w.id === id);
     const j = i + dir;
@@ -201,13 +220,19 @@ export default function Admin() {
           <span className="en">Works List</span>
           <span className="ja">登録済みの作品(全 {works.length} 件・上から順に表示)</span>
         </div>
+        <p style={{ textAlign: "center", color: "var(--text-light)", fontSize: "0.85rem", marginBottom: 20 }}>
+          ★ = トップページに表示する作品(最大3件・現在 {works.filter((w) => w.is_featured).length} / 3 件)
+        </p>
         {works.map((w) => (
           <div key={w.id} className="admin-list-item">
             <img src={w.image} alt="" />
             <div className="info">
-              <b>{w.title}</b>
+              <b>{w.title}{w.is_featured && <span style={{ color: "#c98a1a", marginLeft: 6 }}>★トップ表示中</span>}</b>
               <span>{w.category}</span>
             </div>
+            <button className={`mini-btn ${w.is_featured ? "edit" : ""}`} onClick={() => toggleFeatured(w.id)}>
+              {w.is_featured ? "★トップ表示中" : "☆トップに表示"}
+            </button>
             <button className="mini-btn" onClick={() => move(w.id, -1)}>↑</button>
             <button className="mini-btn" onClick={() => move(w.id, 1)}>↓</button>
             <button className="mini-btn edit" onClick={() => startEdit(w)}>編集</button>

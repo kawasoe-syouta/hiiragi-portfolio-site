@@ -6,6 +6,7 @@ export type Work = {
   category: string;
   description: string;
   image: string;
+  is_featured: boolean;
 };
 
 export type WorksResponse = { works: Work[]; categories: string[] };
