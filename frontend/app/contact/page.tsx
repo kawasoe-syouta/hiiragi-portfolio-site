@@ -99,7 +99,7 @@ function ContactForm() {
 export default function Contact() {
   return (
     <>
-      <div className="page-head">
+      <div className="page-head page-head-photo" style={{ backgroundImage: "url(/images/hero/hero-1.jpg)" }}>
         <div className="en">Contact</div>
         <div className="ja">お問い合わせ・ご依頼</div>
       </div>

@@ -16,7 +16,7 @@ export default async function Works() {
 
   return (
     <>
-      <div className="page-head">
+      <div className="page-head page-head-photo" style={{ backgroundImage: "url(/images/hero/hero-2.jpg)" }}>
         <div className="en">Works</div>
         <div className="ja">制作実績</div>
       </div>

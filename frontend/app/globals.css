@@ -88,11 +88,30 @@ ul { list-style: none; }
 .hero {
   position: relative; overflow: hidden;
   background: linear-gradient(160deg, var(--green-pale) 0%, #fff 55%, var(--green-light) 100%);
-  padding: 90px 24px 100px; text-align: center;
+  padding: 0 24px; text-align: center;
+}
+/* 背景写真スライドショー(クロスフェード) */
+.hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.hero-bg-slide {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0; transition: opacity 1.8s ease;
+}
+.hero-bg-slide.is-active { opacity: 1; }
+/* 写真の上に白を重ねて、文字を読みやすくする */
+.hero-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: #FFFFFF80;
 }
 .hero-deco { position: absolute; opacity: 0.5; pointer-events: none; }
 .hero-deco.tl { top: -20px; left: -20px; width: 220px; }
 .hero-deco.br { bottom: -30px; right: -20px; width: 260px; transform: rotate(180deg); }
+/* 文字・ボタンを載せる白パネル(ヒーローの上下いっぱいに伸ばす) */
+.hero-panel {
+  background: #fff;
+  max-width: 680px; margin: 0 auto;
+  padding: 90px 40px 100px;
+}
 .hero-icon {
   width: 130px; height: 130px; border-radius: 50%;
   margin: 0 auto 24px; overflow: hidden;
@@ -316,6 +335,24 @@ ul { list-style: none; }
 }
 .page-head .en { font-family: var(--font-en); font-size: 2.1rem; letter-spacing: 0.2em; color: var(--green-dark); }
 .page-head .ja { font-size: 0.85rem; color: var(--text-light); }
+/* 写真背景の見出し(ヒーローと同じ写真+白オーバーレイ) */
+.page-head-photo {
+  position: relative; overflow: hidden;
+  background-size: cover; background-position: center;
+}
+.page-head-photo::before {
+  content: ""; position: absolute; inset: 0;
+  background: #FFFFFF80;
+}
+/* 写真の上でもタイトルが目立つように、文字の周りに白いぼかしを敷く */
+.page-head-photo .en {
+  font-weight: 600;
+  text-shadow: 0 0 10px #fff, 0 0 22px #fff, 0 0 38px rgba(255, 255, 255, 0.85);
+}
+.page-head-photo .ja {
+  color: var(--text); font-weight: 600;
+  text-shadow: 0 0 8px #fff, 0 0 18px #fff;
+}
 
 /* ---------- アニメーション ---------- */
 .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.8s, transform 0.8s; }
@@ -356,7 +393,7 @@ body { position: relative; }
    手前に置き、花と重なったときは必ず花が下(背景側)になるようにする。
    セクションの背景色の上には花を見せたいので、背景を持つセクション自体ではなく
    背景が透明な中身のラッパー側を持ち上げる */
-.hero > :not(.hero-deco), .page-head > *, .section .container, .footer > * {
+.hero > :not(.hero-deco):not(.hero-bg), .page-head > *, .section .container, .footer > * {
   position: relative; z-index: 2;
 }
 /* 花びらが中心から1枚ずつひらく */
@@ -434,7 +471,7 @@ body { font-family: var(--font-jp), "Hiragino Maru Gothic ProN", sans-serif; }
 /* ---------- タブレット横(〜1024px) ---------- */
 @media (max-width: 1024px) {
   .section { padding: 70px 0; }
-  .hero { padding: 76px 24px 84px; }
+  .hero { padding: 0 24px; }
   .works-grid { gap: 22px; }
   .price-grid { gap: 18px; }
   .price-card { padding: 30px 20px; }
@@ -454,6 +491,7 @@ body { font-family: var(--font-jp), "Hiragino Maru Gothic ProN", sans-serif; }
   .page-head { padding: 48px 24px; }
 
   .hero h1 { font-size: 1.9rem; }
+  .hero-panel { padding: 64px 28px 72px; }
   .hero-deco.tl { width: 160px; }
   .hero-deco.br { width: 190px; }
 
@@ -492,7 +530,8 @@ body { font-family: var(--font-jp), "Hiragino Maru Gothic ProN", sans-serif; }
   .btn { padding: 12px 30px; font-size: 0.88rem; }
 
   /* ヒーロー */
-  .hero { padding: 56px 20px 64px; }
+  .hero { padding: 0 20px; }
+  .hero-panel { padding: 48px 18px 56px; }
   .hero-icon { width: 104px; height: 104px; margin-bottom: 18px; }
   .hero-en { font-size: 0.85rem; letter-spacing: 0.25em; }
   .hero h1 { font-size: 1.6rem; }

@@ -5,7 +5,7 @@
 
 import { useEffect, useRef } from "react";
 
-type Variant = "pink" | "blush" | "green";
+type Variant = "pink" | "blush" | "green" | "white";
 
 type FlowerSpec = {
   top?: string;
@@ -20,13 +20,14 @@ type FlowerSpec = {
 };
 
 const FLOWERS: FlowerSpec[] = [
-  /* 最初の画面(vh = 画面の高さ基準。スクロールするとページと一緒に流れていく) */
-  { top: "13vh", left: "3.5%", size: 92, delay: 0.2, opacity: 0.55, variant: "pink" },
-  { top: "36vh", left: "7%", size: 44, delay: 1.3, opacity: 0.45, variant: "blush" },
-  { top: "62vh", left: "3%", size: 64, delay: 0.8, opacity: 0.5, variant: "green", hideSm: true },
-  { top: "10vh", right: "6%", size: 54, delay: 0.9, opacity: 0.5, variant: "blush" },
-  { top: "40vh", right: "3%", size: 84, delay: 0.45, opacity: 0.55, variant: "pink" },
-  { top: "70vh", right: "8.5%", size: 46, delay: 1.6, opacity: 0.5, variant: "green", hideSm: true },
+  /* 最初の画面(vh = 画面の高さ基準。スクロールするとページと一緒に流れていく)
+     ヒーローの写真に被るため白い花にしている */
+  { top: "13vh", left: "3.5%", size: 92, delay: 0.2, opacity: 0.55, variant: "white" },
+  { top: "36vh", left: "7%", size: 44, delay: 1.3, opacity: 0.45, variant: "white" },
+  { top: "62vh", left: "3%", size: 64, delay: 0.8, opacity: 0.5, variant: "white", hideSm: true },
+  { top: "10vh", right: "6%", size: 54, delay: 0.9, opacity: 0.5, variant: "white" },
+  { top: "40vh", right: "3%", size: 84, delay: 0.45, opacity: 0.55, variant: "white" },
+  { top: "70vh", right: "8.5%", size: 46, delay: 1.6, opacity: 0.5, variant: "white", hideSm: true },
   /* スクロールした先の花。delay は「画面に入ってから」咲き始めるまでの秒数 */
   { top: "110vh", right: "4%", size: 70, delay: 0.2, opacity: 0.5, variant: "blush" },
   { top: "135vh", left: "5%", size: 48, delay: 0.5, opacity: 0.45, variant: "pink", hideSm: true },
@@ -43,10 +44,11 @@ const FLOWERS: FlowerSpec[] = [
   { bottom: "5vh", right: "4%", size: 60, delay: 0.2, opacity: 0.5, variant: "blush" },
 ];
 
-const PALETTES: Record<Variant, { petal: string; petalAlt: string; core: string; dot: string }> = {
-  pink:  { petal: "#d9a5b3", petalAlt: "#e4bcc7", core: "#ffffff", dot: "#7c9a72" },
-  blush: { petal: "#e9c6d0", petalAlt: "#f2d9e0", core: "#ffffff", dot: "#a3bd97" },
-  green: { petal: "#b7cdae", petalAlt: "#cdddc6", core: "#ffffff", dot: "#d9a5b3" },
+const PALETTES: Record<Variant, { petal: string; petalAlt: string; core: string; dot: string; leaf: string }> = {
+  pink:  { petal: "#d9a5b3", petalAlt: "#e4bcc7", core: "#ffffff", dot: "#7c9a72", leaf: "#9db894" },
+  blush: { petal: "#e9c6d0", petalAlt: "#f2d9e0", core: "#ffffff", dot: "#a3bd97", leaf: "#9db894" },
+  green: { petal: "#b7cdae", petalAlt: "#cdddc6", core: "#ffffff", dot: "#d9a5b3", leaf: "#9db894" },
+  white: { petal: "#ffffff", petalAlt: "#ffffff", core: "#ffffff", dot: "#ffffff", leaf: "#ffffff" },
 };
 
 // 中心(50,50)から上向きに伸びる花びら。rotate で5枚に増やす
@@ -64,7 +66,7 @@ function FlowerSvg({ variant }: { variant: Variant }) {
           className="petal"
           style={{ "--r": `${angle}deg`, "--i": i } as React.CSSProperties}
           d={PETAL_PATH}
-          fill="#9db894"
+          fill={c.leaf}
           opacity={0.7}
         />
       ))}
